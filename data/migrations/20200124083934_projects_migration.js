@@ -13,32 +13,29 @@ exports.up = function(knex) {
 
     tbl.boolean('completed')
       .notNullable()
-
+      .defaultTo(0)
   })
 
   .createTable('tasks', tbl => {
     tbl.increments()
 
     tbl.integer('project_id')
-    .unsigned()
-    .notNullable()
-    .references('id')
-    .inTable('projects')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('projects')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE')
 
-    tbl.string('name', 128)
+    tbl.string('description', 128)
       .notNullable()
       .index()
-
-    tbl.string('description', 255)
-      .notNullable()
 
     tbl.string('notes', 255)
 
     tbl.boolean('completed')
       .notNullable()
-
+      .defaultTo(0)
   })
 
   .createTable('resources', tbl => {
